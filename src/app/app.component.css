@@ -1,0 +1,14 @@
+
+ul li {
+  list-style-type: decimal;
+  margin: 10px;
+}
+ul li a {
+  font-size: 18px;
+  color: #444;
+  text-decoration: none;
+}
+
+ul li a:hover {
+  color: red;
+}
