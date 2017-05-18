@@ -1,0 +1,87 @@
+
+<div class="add-btn">
+    <a href="/employee/create" class="btn btn-primary"> ADD Employee </a>
+     <a href="mailto:{{to}}?cc={{cc}}&subject={{subject}}&bcc={{bcc}}&body={{body}}" class="btn btn-primary"> Prepare Mail </a>
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Actions</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th class="date-width">DOB</th>
+            <th>Team</th>
+            <th>Email</th>
+            <th>Client Email</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+                <!--<input type="checkbox" class="form-control">-->
+            </td>
+            <td><input type="text" class="form-control" name="First Name" [(ngModel)]="filter.firstName" placeholder="First Name"></td>
+            <td><input type="text" class="form-control" name="Last Name" [(ngModel)]="filter.lastName" placeholder="Last Name"></td>
+            <td><input type="date" class="form-control date-width-select" name="DOB" id="DOB" [(ngModel)]="filter.DOB"></td>
+            <td><input type="text" class="form-control" name="team" [(ngModel)]="filter.team" placeholder="Team"></td>
+            <td><input type="text" class="form-control" name="email" [(ngModel)]="filter.email" placeholder="Email"></td>
+            <td><input type="text" class="form-control" name="clientEmail" [(ngModel)]="filter.clientEmail" placeholder="ClientEmail"></td>
+            <td class="width-10">
+                <select [(ngModel)]="filter.status" name="status" class="form-control">
+                     <option value=""> All </option>
+                    <option value="Active"> Active </option>
+                    <option value="Other"> Other </option>
+                </select>
+                <!--<input type="text" class="form-control" name="status" [(ngModel)]="filter.status" placeholder="status">-->
+            </td>
+        </tr>
+        <tr *ngFor="let employee of employees | employeeFilter:filter">
+            <td>
+                <div *ngIf="!employee.editMode">
+                    <!--<input type="checkbox" class="form-control">-->
+                    <a (click)="deleteEmployee(employee.id)">
+                        <i class="glyphicon glyphicon-trash"></i></a>
+                    <a (click)="editEmployee(employee.id)">
+                        <i class="glyphicon glyphicon-pencil"></i></a>
+                </div>
+                <div *ngIf="employee.editMode">
+                    <a (click)="saveEmployee(employee.id)">
+                        <i class="glyphicon glyphicon-ok"></i></a>
+                    <a (click)="cancelEmployee(employee.id)">
+                        <i class="glyphicon glyphicon-remove"></i></a>
+                </div>
+            </td>
+            <td>
+                <div *ngIf="!employee.editMode" title="{{employee.firstName}}"> {{employee.firstName}}</div>
+                <div *ngIf="employee.editMode" title="{{employee.firstName}}"><input type="text" [(ngModel)]="employee.firstName"></div>
+            </td>
+            <td>
+                <div *ngIf="!employee.editMode" title="{{ employee.lastName }}">{{ employee.lastName }}</div>
+                <div *ngIf="employee.editMode" title="{{ employee.lastName }}"><input type="text" [(ngModel)]="employee.lastName"></div>
+            </td>
+            <td>
+                <div *ngIf="!employee.editMode" title="{{ employee.DOB | date: 'MM-dd-yyyy' }}">{{ employee.DOB | date: 'MM-dd-yyyy' }}</div>
+                <div *ngIf="employee.editMode" title="{{ employee.DOB | date: 'MM-dd-yyyy' }}"><input type="date" [(ngModel)]="employee.DOB"></div>
+            </td>
+            <td>
+                <div *ngIf="!employee.editMode" title="{{ employee.team }}">{{ employee.team }}</div>
+                <div *ngIf="employee.editMode" title="{{ employee.team }}"><input type="text" [(ngModel)]="employee.team"></div>
+            </td>
+            <td>
+                <div *ngIf="!employee.editMode" title="{{ employee.email }}">{{ employee.email }}</div>
+                <div *ngIf="employee.editMode" title="{{ employee.email }}"><input type="text" [(ngModel)]="employee.email"></div>
+            </td>
+            <td>
+                <div *ngIf="!employee.editMode" title="{{ employee.clientEmail }}">{{ employee.clientEmail }}</div>
+                <div *ngIf="employee.editMode" title="{{ employee.clientEmail }}"><input type="text" [(ngModel)]="employee.clientEmail"></div>
+            </td>
+            <td>
+                <div *ngIf="!employee.editMode" title="{{ employee.status }}">
+                    <div *ngIf="employee.status==='Active'" class="green-circle"></div>
+                    <div *ngIf="employee.status!='Active'" class="red-circle"></div>
+                </div>
+                <div *ngIf="employee.editMode" title="{{ employee.status }}"><input type="text" [(ngModel)]="employee.status"></div>
+            </td>
+    </tbody>
+</table>
