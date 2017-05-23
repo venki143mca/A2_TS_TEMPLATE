@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 
 import { EmployeeService } from './employee.service'
 import { Employee } from './employee'
-
+/**This component is not in use as of now. because Angular routing is not working. */
 @Component({
     selector: 'my-app',
     templateUrl: './employee.create.component.html'

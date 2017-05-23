@@ -2,10 +2,11 @@
 import { Injectable } from '@angular/core';
 import { Http, Response, Headers } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
+import { environment } from './../../environments/environment';
 
 @Injectable()
 export class EmployeeService {
-    public url:String= 'https://birthdaylist.herokuapp.com'
+    public url:String= environment.apiURL;
     public employees: Array<any> = [];
     constructor(private _http: Http) { }
 

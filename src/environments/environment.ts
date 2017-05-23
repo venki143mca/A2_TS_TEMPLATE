@@ -5,6 +5,6 @@
 
 export const environment = {
   production: false,
-  apiURL: 'https://birthdaylist.herokuapp.com/dev',
+  apiURL: 'http://localhost:3000',
   envName: 'dev'
 };

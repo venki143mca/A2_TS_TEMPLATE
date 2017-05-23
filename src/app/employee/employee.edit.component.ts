@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Employee } from './employee';
 import { EmployeeService } from './employee.service'
-
+/**This component is not in use as of now. because Angular routing is not working. */
 @Component({
     selector: 'my-app',
     template: `<h1>Edit {{id}}
