@@ -4,7 +4,8 @@ import { Observable } from 'rxjs/Observable';
 
 import { EmployeeService } from './employee.service'
 import { Employee } from './../employee/employee';
-import 'rxjs/add/operator/map'
+import 'rxjs/add/operator/map';
+
 
 @Component({
   selector: 'my-app',
@@ -22,15 +23,16 @@ export class EmployeeComponent {
   Eswar Ramisetti.`;
 
   filter: Employee = new Employee();
+  newEmployee: Employee = new Employee();
 
-  
+
   constructor(public employeeService: EmployeeService) {
 
   }
 
   ngOnInit() {
     this.filter.status = "Active";
-   this.loadEmployees();
+    this.loadEmployees();
   }
 
   deleteEmployee(id: Number) {
@@ -86,7 +88,29 @@ export class EmployeeComponent {
     let that = this;
     this.employeeService.getEmployees().subscribe(
       (res: any) => {
-        this.employees = res.result;
+         this.employees = res.result;
+        // const results = res.result;
+        // results.forEach(obj => {
+        //   let emp:Employee = new Employee();
+        //   emp.id = obj.id;
+        //   emp.firstName = obj.firstName;
+        //   emp.lastName =  obj.lastName;
+        //   emp.DOB = obj.DOB;
+        //   emp.clientEmail = obj.clientEmail;
+        //   emp.email =  obj.email;
+        //   emp.status = obj.status;
+        //   emp.team = obj.team;
+        //   this.employees.push(emp);
+        // });
+      }
+    );
+  }
+
+  addEmployee() {
+    this.employeeService.createEmployee(this.newEmployee).subscribe(
+      (res:any) => {
+        console.log(res.status);
+        this.employees.push(this.newEmployee);
       }
     );
   }

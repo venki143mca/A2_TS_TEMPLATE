@@ -12,7 +12,7 @@ import { routing } from './routes';
 import { EmployeeFilterPipe } from './common/employee.filter';
 
 @NgModule({
-  declarations: [ EmployeeComponent, EmployeeCreate, EmployeeEdit, EmployeeFilterPipe],
+  declarations: [ EmployeeComponent, EmployeeCreate, EmployeeEdit, EmployeeFilterPipe ],
   imports: [BrowserModule, HttpModule, RouterModule, routing, FormsModule, ReactiveFormsModule],
   bootstrap: [EmployeeComponent],
   providers: [EmployeeService]

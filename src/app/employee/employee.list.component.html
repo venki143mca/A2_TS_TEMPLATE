@@ -1,7 +1,6 @@
-
 <div class="add-btn">
-    <a href="/employee/create" class="btn btn-primary"> ADD Employee </a>
-     <a href="mailto:{{to}}?cc={{cc}}&subject={{subject}}&bcc={{bcc}}&body={{body}}" class="btn btn-primary"> Prepare Mail </a>
+    <a class="btn btn-primary" data-toggle="modal" data-target="#registerModel"> ADD Employee </a>
+    <a href="mailto:{{to}}?cc={{cc}}&subject={{subject}}&bcc={{bcc}}&body={{body}}" class="btn btn-primary"> Prepare Mail </a>
 </div>
 <table class="table">
     <thead>
@@ -36,6 +35,7 @@
                 <!--<input type="text" class="form-control" name="status" [(ngModel)]="filter.status" placeholder="status">-->
             </td>
         </tr>
+
         <tr *ngFor="let employee of employees | employeeFilter:filter">
             <td>
                 <div *ngIf="!employee.editMode">
@@ -85,3 +85,26 @@
             </td>
     </tbody>
 </table>
+
+<!-- Register Model-->
+<div class="modal fade" id="registerModel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="display: none;">
+    <div class="modal-dialog">
+        <div class="loginmodal-container">
+            <h1>Add Employee</h1>
+            <form id="formregister">
+                <input type="text" class="form-control" id="fname" name="First Name" [(ngModel)]="newEmployee.firstName" placeholder="First Name">
+                <input type="text" class="form-control" id="lname" name="Last Name" [(ngModel)]="newEmployee.lastName" placeholder="Last Name">
+                <input type="date" class="form-control" id="DOB date-width-select" name="DOB" id="DOB" [(ngModel)]="newEmployee.DOB">
+                <input type="text" class="form-control" name="team" [(ngModel)]="newEmployee.team" placeholder="Team">
+                <input type="text" class="form-control" name="email" [(ngModel)]="newEmployee.email" placeholder="Email">
+                <input type="text" class="form-control" name="clientEmail" [(ngModel)]="newEmployee.clientEmail" placeholder="ClientEmail">
+                <select [(ngModel)]="newEmployee.status" name="status" class="form-control">
+                     <option value=""> All </option>
+                    <option value="Active"> Active </option>
+                    <option value="Other"> Other </option>
+                </select>
+                 <a (click)="addEmployee()" class="btn btn-primary" data-toggle="modal" data-target="#registerModel"> ADD Employee </a>
+            </form>
+        </div>
+    </div>
+</div>
