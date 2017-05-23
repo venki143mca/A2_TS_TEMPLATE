@@ -86,7 +86,10 @@
     </tbody>
 </table>
 
-<!-- Register Model-->
+<div style="display:none">Env::{{envName}}</div>
+<div style="display:none">api::{{apiUrl}}</div>
+
+<!-- Add Employee Model-->
 <div class="modal fade" id="registerModel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="display: none;">
     <div class="modal-dialog">
         <div class="loginmodal-container">
@@ -99,11 +102,10 @@
                 <input type="text" class="form-control" name="email" [(ngModel)]="newEmployee.email" placeholder="Email">
                 <input type="text" class="form-control" name="clientEmail" [(ngModel)]="newEmployee.clientEmail" placeholder="ClientEmail">
                 <select [(ngModel)]="newEmployee.status" name="status" class="form-control">
-                     <option value=""> All </option>
                     <option value="Active"> Active </option>
                     <option value="Other"> Other </option>
                 </select>
-                 <a (click)="addEmployee()" class="btn btn-primary" data-toggle="modal" data-target="#registerModel"> ADD Employee </a>
+                 <a (click)="addEmployee()" class="btn btn-primary addEmployeeBtn" data-toggle="modal" data-target="#registerModel"> ADD Employee </a>
             </form>
         </div>
     </div>

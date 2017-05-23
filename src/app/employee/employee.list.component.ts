@@ -5,6 +5,7 @@ import { Observable } from 'rxjs/Observable';
 import { EmployeeService } from './employee.service'
 import { Employee } from './../employee/employee';
 import 'rxjs/add/operator/map';
+import { environment } from './../../environments/environment';
 
 
 @Component({
@@ -22,9 +23,11 @@ export class EmployeeComponent {
   Thanks,%0D
   Eswar Ramisetti.`;
 
+  public apiUrl = environment.apiURL;
+  public envName = environment.envName;
+
   filter: Employee = new Employee();
   newEmployee: Employee = new Employee();
-
 
   constructor(public employeeService: EmployeeService) {
 
@@ -32,6 +35,7 @@ export class EmployeeComponent {
 
   ngOnInit() {
     this.filter.status = "Active";
+    this.newEmployee.status = 'Active';
     this.loadEmployees();
   }
 
@@ -88,7 +92,7 @@ export class EmployeeComponent {
     let that = this;
     this.employeeService.getEmployees().subscribe(
       (res: any) => {
-         this.employees = res.result;
+        this.employees = res.result;
         // const results = res.result;
         // results.forEach(obj => {
         //   let emp:Employee = new Employee();
@@ -108,12 +112,12 @@ export class EmployeeComponent {
 
   addEmployee() {
     this.employeeService.createEmployee(this.newEmployee).subscribe(
-      (res:any) => {
-        console.log(res.status);
-        this.employees.push(this.newEmployee);
+      (res: any) => {
+        if (res.status === 201) {
+          this.employees.push(this.newEmployee);
+        }
+        console.log('Response of adding employee from server :: ', res.status);
       }
     );
   }
-
-
 }

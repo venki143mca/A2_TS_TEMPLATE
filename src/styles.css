@@ -323,14 +323,9 @@ table input {
   /* background-image: -webkit-gradient(linear, 0 0, 0 100%,   from(#4d90fe), to(#357ae8)); */
 }
 
-.loginmodal-container a {
-  text-decoration: none;
-  color: #666;
-  font-weight: 400;
-  text-align: center;
-  display: inline-block;
-  opacity: 0.6;
-  transition: opacity ease 0.5s;
+.addEmployeeBtn {
+    margin-top: 2%;
+    margin-left: 33%;
 } 
 
 .login-help{

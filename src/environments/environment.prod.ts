@@ -1,3 +1,5 @@
 export const environment = {
-  production: true
+  production: true,
+  apiURL: 'https://birthdaylist.herokuapp.com/prod',
+  envName: 'prod'
 };
