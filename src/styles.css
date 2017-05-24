@@ -344,3 +344,35 @@ table input {
     color: red;
     font-weight: bold;
 }
+
+.width10 {
+  width:10%
+}
+
+.width100 {
+  width:100%
+}
+
+.autoWidth{
+    width: auto;
+}
+
+table input[type=checkbox] {
+  box-shadow: none;
+}
+
+#formregister label {
+    margin-left: 1%
+}
+
+#formregister textarea {
+    margin: 0px;
+    width: 100%;
+    height: auto;
+}
+
+.saveEmailDetails {
+  margin-left: 41%
+}
+
+    

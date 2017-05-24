@@ -1,11 +1,13 @@
 export class Employee {
-    id: Number;
-    firstName: String;
-    lastName: String;
+    id: number;
+    firstName: string;
+    lastName: string;
     DOB: Date;
-    team: String;
-    clientEmail: String;
-    email: String;
-    status: String;
-    editMode: Boolean = false;
+    team: string;
+    clientEmail: string;
+    email: string;
+    status: string;
+
+    editMode: boolean = false;
+    sendEmail: boolean;
 }

@@ -1,7 +1,10 @@
 <div class="add-btn">
-    <a class="btn btn-primary" data-toggle="modal" data-target="#registerModel"> ADD Employee </a>
-    <a href="mailto:{{to}}?cc={{cc}}&subject={{subject}}&bcc={{bcc}}&body={{body}}" class="btn btn-primary"> Prepare Mail </a>
+    <a class="btn btn-primary" data-toggle="modal" data-target="#addEmployee"> ADD Employee </a>
+    <a class="btn btn-primary" data-toggle="modal" data-target="#emailDetails"> Email Template </a>
+    <a *ngIf="mailDetails.bcc != ''" href="mailto:{{to}}?cc={{mailDetails.cc}}&subject={{mailDetails.subject}}&bcc={{mailDetails.bcc}}&body={{mailDetails.mailBody}}" class="btn btn-primary"> Prepare Mail </a>
+    <a *ngIf="mailDetails.bcc === ''" href="mailto:{{to}}?cc={{mailDetails.cc}}&subject={{mailDetails.subject}}&body={{mailDetails.mailBody}}" class="btn btn-primary"> Prepare Mail </a>
 </div>
+
 <table class="table">
     <thead>
         <tr>
@@ -18,7 +21,7 @@
     <tbody>
         <tr>
             <td>
-                <!--<input type="checkbox" class="form-control">-->
+                
             </td>
             <td><input type="text" class="form-control" name="First Name" [(ngModel)]="filter.firstName" placeholder="First Name"></td>
             <td><input type="text" class="form-control" name="Last Name" [(ngModel)]="filter.lastName" placeholder="Last Name"></td>
@@ -32,14 +35,14 @@
                     <option value="Active"> Active </option>
                     <option value="Other"> Other </option>
                 </select>
-                <!--<input type="text" class="form-control" name="status" [(ngModel)]="filter.status" placeholder="status">-->
             </td>
         </tr>
 
         <tr *ngFor="let employee of employees | employeeFilter:filter">
-            <td>
+            <td class="width10">
+
                 <div *ngIf="!employee.editMode">
-                    <!--<input type="checkbox" class="form-control">-->
+                    <input type="checkbox" class="autoWidth"  [(ngModel)]="employee.sendEmail" (change)="addEmails(employee)">
                     <a (click)="deleteEmployee(employee.id)">
                         <i class="glyphicon glyphicon-trash"></i></a>
                     <a (click)="editEmployee(employee.id)">
@@ -90,7 +93,7 @@
 <div style="display:none">api::{{apiUrl}}</div>
 
 <!-- Add Employee Model-->
-<div class="modal fade" id="registerModel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="display: none;">
+<div class="modal fade" id="addEmployee" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="display: none;">
     <div class="modal-dialog">
         <div class="loginmodal-container">
             <h1>Add Employee</h1>
@@ -105,7 +108,27 @@
                     <option value="Active"> Active </option>
                     <option value="Other"> Other </option>
                 </select>
-                 <a (click)="addEmployee()" class="btn btn-primary addEmployeeBtn" data-toggle="modal" data-target="#registerModel"> ADD Employee </a>
+                <a (click)="addEmployee()" class="btn btn-primary addEmployeeBtn" data-toggle="modal" data-target="#addEmployee"> ADD Employee </a>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Email Details Model-->
+<div class="modal fade" id="emailDetails" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="display: none;">
+    <div class="modal-dialog">
+        <div class="loginmodal-container">
+            <h1>Email Template</h1>
+            <form id="formregister">
+                <label id="cclabel">cc</label>
+                <textarea name="cc"  [(ngModel)]="mailDetails.cc" id="cc"></textarea> 
+                <label id="cclabel">bcc</label>
+                <textarea name="bcc"  [(ngModel)]="mailDetails.bcc" id="bcc"></textarea> 
+                <label id="cclabel">subject</label>
+                <textarea name="subject"  [(ngModel)]="mailDetails.subject" id="subject"></textarea> 
+                <label id="cclabel">body</label>
+                <textarea name="body"  [(ngModel)]="mailDetails.body" id="body" rows="6"></textarea> 
+                <a (click)="saveEmailDetails()" class="btn btn-primary saveEmailDetails" data-toggle="modal" data-target="#emailDetails"> Save </a>
             </form>
         </div>
     </div>

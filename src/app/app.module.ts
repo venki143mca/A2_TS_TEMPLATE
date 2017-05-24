@@ -6,6 +6,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { EmployeeComponent } from './employee/employee.list.component';
 import { EmployeeService } from './employee/employee.service';
+import { MailDetailsService } from './mailDetails/mailDetails.service';
 import { EmployeeCreate } from './employee/employee.create.component';
 import { EmployeeEdit } from './employee/employee.edit.component';
 import { routing } from './routes';
@@ -15,6 +16,6 @@ import { EmployeeFilterPipe } from './common/employee.filter';
   declarations: [ EmployeeComponent, EmployeeCreate, EmployeeEdit, EmployeeFilterPipe ],
   imports: [BrowserModule, HttpModule, RouterModule, routing, FormsModule, ReactiveFormsModule],
   bootstrap: [EmployeeComponent],
-  providers: [EmployeeService]
+  providers: [EmployeeService, MailDetailsService]
 })
 export class AppModule { }
